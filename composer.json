@@ -1,5 +1,5 @@
 {
-    "name": "pixellweb/salesforce",
+    "name": "pixellweb/zoho",
     "license": "MIT",
     "authors": [
         {
@@ -9,18 +9,18 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.0.1",
         "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
-            "Citadelle\\Salesforce\\": "src"
+            "PixellWeb\\Zoho\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-              "ZohoServiceProvider"
+              "PixellWeb\\Zoho\\ZohoServiceProvider"
             ]
         }
     },

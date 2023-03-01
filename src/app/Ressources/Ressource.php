@@ -1,9 +1,9 @@
 <?php
 
-namespace Citadelle\Salesforce\app\Ressources;
+namespace PixellWeb\Zoho\app\Ressources;
 
 
-use Citadelle\Salesforce\app\Api;
+use PixellWeb\Zoho\app\Api;
 
 class Ressource
 {

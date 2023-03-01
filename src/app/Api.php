@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Zoho\app;
+namespace PixellWeb\Zoho\app;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -37,21 +37,26 @@ class Api
 
     protected function geAccessToken()
     {
+
         $client = new Client([
                 'base_uri' => config('zoho.api.url_authorize')
             ]
         );
 
         $headers = [
+            'query' => [
+                'grant_type' => 'refresh_token',
+                'client_id' => config('zoho.api.client_id'),
+                'client_secret' => config('zoho.api.client_secret'),
+                'refresh_token' => config('zoho.api.refresh_token'),
+            ],
             'headers' => [
                 'Accept' => 'application/json'
             ]
         ];
 
-        $url = config('zoho.api.url_authorize') . '?refresh_token=' . config('zoho.api.refresh_token') . '&client_id=' . config('zoho.api.client_id') . '&client_secret=' . config('zoho.api.client_secret') . '&grant_type=refresh_token';
-
         try {
-            $response = $client->get( $url, $headers );
+            $response = $client->post( config('zoho.api.url_authorize'), $headers );
 
             if ($response->getStatusCode() != 200 or empty($response->getBody()->getContents())) {
                 throw new ZohoException("Impossible de récupèrer le token (" . $response->getStatusCode() . ")");
@@ -78,8 +83,9 @@ class Api
         );
 
         $headers = [
+            'verify' => false,
             'headers' => [
-                'Zoho-oauthtoken' => $this->token,
+                'Authorization' => $this->token,
             ]
         ];
 
@@ -93,11 +99,10 @@ class Api
             return json_decode($response->getBody(), true);
 
         } catch (RequestException $exception) {
-            /*$errors['request'] = Psr7\Message::toString($e->getRequest());
-            if ($e->hasResponse()) {
-                $errors['response'] = Psr7\Message::toString($e->getResponse());
-            }*/
-
+            $errors['request'] = Psr7\Message::toString($exception->getRequest());
+            if ($exception->hasResponse()) {
+                $errors['response'] = Psr7\Message::toString($exception->getResponse());
+            }
             throw new ZohoException("Api::get : " . $exception->getMessage());
         }
     }

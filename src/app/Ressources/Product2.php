@@ -1,5 +1,5 @@
 <?php
-namespace Citadelle\Salesforce\app\Ressources;
+namespace PixellWeb\Zoho\app\Ressources;
 
 
 class Product2 extends Ressource

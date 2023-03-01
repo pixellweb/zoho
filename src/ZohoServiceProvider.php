@@ -1,6 +1,6 @@
 <?php
 
-namespace Citadelle\Salesforce;
+namespace PixellWeb\Zoho;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -48,7 +48,7 @@ class ZohoServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/zoho.php.php', 'zoho'
+            __DIR__ . '/config/zoho.php', 'zoho'
         );
     }
 }

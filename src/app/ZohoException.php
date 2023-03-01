@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Zoho\app;
+namespace PixellWeb\Zoho\app;
 
 
 class ZohoException extends \Exception

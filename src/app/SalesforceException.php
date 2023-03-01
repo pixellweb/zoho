@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Citadelle\Salesforce\app;
+namespace PixellWeb\Zoho\app;
 
 
 class SalesforceException extends \Exception
