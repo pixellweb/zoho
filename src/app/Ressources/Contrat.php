@@ -14,7 +14,13 @@ class Contrat extends Ressource
      */
     public function getSitesInternet(string $view_id = self::VIEW_SITES_EN_LIGNE, array $fields = ['Domaine'] )
     {
-        return $this->api->get("Deals?cvid=" . $view_id . "&fields=" . implode(',', $fields ));
+        return $this->getRecords("Deals?cvid=" . $view_id . "&fields=" . implode(',', $fields ));
+    }
+
+
+    public function get(string $id, array $fields = ['Domaine'] )
+    {
+        return $this->api->get("Deals/" . $id. "?fields=" . implode(',', $fields ));
     }
 
 }
